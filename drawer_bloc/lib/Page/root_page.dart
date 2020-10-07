@@ -1,3 +1,4 @@
+import 'package:drawer_bloc/Widget/drawer_widget.dart';
 import 'package:flutter/material.dart';
 
 class RootPage extends StatefulWidget {
@@ -10,8 +11,12 @@ class RootPage extends StatefulWidget {
 class _RootPageState extends State<RootPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Flutter Dev"),
+      ),
+      drawer: AppDrawer(),
+      body: Container(),
     );
   }
 }
