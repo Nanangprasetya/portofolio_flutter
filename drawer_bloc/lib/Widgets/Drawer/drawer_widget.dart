@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/drawer_bloc.dart';
 
 class AppDrawer extends StatefulWidget {
-  const AppDrawer({
-    Key key,
-  }) : super(key: key);
+  final bool permanentlyDisplay;
+
+  const AppDrawer({Key key, this.permanentlyDisplay = false}) : super(key: key);
 
   @override
   _AppDrawerState createState() => _AppDrawerState();
@@ -41,14 +41,23 @@ class _AppDrawerState extends State<AppDrawer> {
   _getListItem() {
     return List.generate(
         drawerItems.length,
-        (i) => ListTile(
-            leading: Icon(drawerItems[i].icon),
-            title: Text(drawerItems[i].title),
-            selected: i == _selectedDrawerIndex,
-            onTap: () {
-              Navigator.pop(context);
-              context.bloc<NavigationBloc>().add(drawerItems[i].event);
-            }));
+        (i) => Container(
+              color: i == _selectedDrawerIndex
+                  ? Theme.of(context).primaryColor.withOpacity(0.15)
+                  : null,
+              child: ListTile(
+                  leading: Icon(drawerItems[i].icon),
+                  title: Text(drawerItems[i].title),
+                  selected: i == _selectedDrawerIndex,
+                  onTap: () {
+                    if (widget.permanentlyDisplay) {
+                      context.bloc<NavigationBloc>().add(drawerItems[i].event);
+                    } else {
+                      Navigator.pop(context);
+                      context.bloc<NavigationBloc>().add(drawerItems[i].event);
+                    }
+                  }),
+            ));
   }
 
   @override
