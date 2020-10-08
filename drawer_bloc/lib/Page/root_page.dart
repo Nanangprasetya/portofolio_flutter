@@ -1,22 +1,37 @@
-import 'package:drawer_bloc/Widget/drawer_widget.dart';
+import 'package:drawer_bloc/Page/default_page.dart';
+import 'package:drawer_bloc/Widget/drawer/bloc/drawer_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'first_page.dart';
+import 'second_page.dart';
 
-class RootPage extends StatefulWidget {
-  RootPage({Key key}) : super(key: key);
-
+class HomePage extends StatefulWidget {
   @override
-  _RootPageState createState() => _RootPageState();
+  State<StatefulWidget> createState() {
+    return HomePageState();
+  }
 }
 
-class _RootPageState extends State<RootPage> {
+_getDrawerItemWidget(NavigationState state) {
+  if (state is StateA) {
+    return HomeFragment();
+  }
+  if (state is StateB) {
+    return AboutusFragment();
+  } else {
+    return DefaultFragment();
+  }
+}
+
+class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Flutter Dev"),
-      ),
-      drawer: AppDrawer(),
-      body: Container(),
+    return BlocBuilder<NavigationBloc, NavigationState>(
+      builder: (BuildContext context, NavigationState state) {
+        return Scaffold(
+          body: _getDrawerItemWidget(state),
+        );
+      },
     );
   }
 }

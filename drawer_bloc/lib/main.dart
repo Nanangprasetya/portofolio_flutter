@@ -1,8 +1,14 @@
 import 'package:drawer_bloc/Page/root_page.dart';
+import 'package:drawer_bloc/Widget/drawer/bloc/drawer_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    BlocProvider<NavigationBloc>(
+      create: (BuildContext context) => NavigationBloc(),
+      child: MyApp(),
+    ),);
 }
 
 class MyApp extends StatelessWidget {
@@ -14,7 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: RootPage(),
+      home: HomePage(),
     );
   }
 }
