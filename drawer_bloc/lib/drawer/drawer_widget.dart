@@ -1,6 +1,7 @@
-import 'package:drawer_bloc/Widget/drawer/bloc/drawer_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'bloc/drawer_bloc.dart';
 
 class AppDrawer extends StatefulWidget {
   const AppDrawer({
@@ -15,24 +16,14 @@ class _AppDrawerState extends State<AppDrawer> {
   List<Widget> drawerOptions = [];
   int _selectedDrawerIndex = 0;
 
+// Tambahkan List Menu item disini, NavigationEvent untuk mamanggil Si Event
   final drawerItems = [
-    DrawerItem("Home", Icons.home, NavigationEvent.pageA),
-    DrawerItem("Profile", Icons.person_outline, NavigationEvent.pageB),
+    DrawerItem("Page 1", Icons.home, NavigationEvent.pageA),
+    DrawerItem("Page 2", Icons.person_outline, NavigationEvent.pageB),
+    DrawerItem("Page 3", Icons.airline_seat_flat, NavigationEvent.pageC),
   ];
 
-  _getListItem() {
-    return List.generate(
-        drawerItems.length,
-        (i) => ListTile(
-            leading: Icon(drawerItems[i].icon),
-            title: Text(drawerItems[i].title),
-            selected: i == _selectedDrawerIndex,
-            onTap: () {
-              Navigator.pop(context);
-              context.bloc<NavigationBloc>().add(drawerItems[i].event);
-            }));
-  }
-
+// Tambahkan kondisi Page, fugnsi ini untuk mengubah selected di ListTIle
   _selectiedDrawerIndex(NavigationState state) {
     setState(() {
       if (state is StateA) {
@@ -47,13 +38,28 @@ class _AppDrawerState extends State<AppDrawer> {
     });
   }
 
+  _getListItem() {
+    return List.generate(
+        drawerItems.length,
+        (i) => ListTile(
+            leading: Icon(drawerItems[i].icon),
+            title: Text(drawerItems[i].title),
+            selected: i == _selectedDrawerIndex,
+            onTap: () {
+              Navigator.pop(context);
+              context.bloc<NavigationBloc>().add(drawerItems[i].event);
+            }));
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NavigationBloc, NavigationState>(
       builder: (BuildContext context, NavigationState state) {
+        // Hendle error setState()
         WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
           _selectiedDrawerIndex(state);
         });
+        // Custom UI Drawer Disini gaes
         return Drawer(
           child: Column(
             children: <Widget>[

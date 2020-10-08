@@ -1,5 +1,5 @@
-import 'package:drawer_bloc/Page/root_page.dart';
-import 'package:drawer_bloc/Widget/drawer/bloc/drawer_bloc.dart';
+import 'package:drawer_bloc/drawer/bloc/drawer_bloc.dart';
+import 'package:drawer_bloc/root_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(),
+      home: RootPage(),
     );
   }
 }

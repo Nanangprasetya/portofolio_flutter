@@ -1,14 +1,13 @@
 import 'package:drawer_bloc/drawer/drawer_widget.dart';
 import 'package:flutter/material.dart';
 
-class SecondPage extends StatelessWidget {
+class TriPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-      return Scaffold(
-       appBar: AppBar(title: Text("Page ke Dua"),),
+    return Scaffold(
+      appBar: AppBar(title: Text("Page Ketiga"),),
       drawer: AppDrawer(),
-      body: Center(child: Text("Ini Page ke Dua")),
+      body: Center(child: Text("Page 3")),
     );
   }
-
 }
