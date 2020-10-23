@@ -1,4 +1,4 @@
-package com.example.bottom_navigation_bar_with_bloc
+package com.example.button_tamplate
 
 import io.flutter.embedding.android.FlutterActivity
 
