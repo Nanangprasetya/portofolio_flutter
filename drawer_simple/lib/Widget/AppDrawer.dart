@@ -76,8 +76,8 @@ class AppDrawer extends StatelessWidget {
 
   UserAccountsDrawerHeader buildUserAccountsDrawerHeader(BuildContext context) {
     return UserAccountsDrawerHeader(
-      accountName: Text("Michel Clerk"),
-      accountEmail: Text("Michel@gmail.com"),
+      accountName: Text("UIUX.Biscuit"),
+      accountEmail: Text("biscuit.uiux@gmail.com"),
       currentAccountPicture: CircleAvatar(
         backgroundColor: Theme.of(context).platform == TargetPlatform.iOS
             ? Colors.blue

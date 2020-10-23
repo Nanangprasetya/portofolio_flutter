@@ -1,3 +1,4 @@
+import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:drawer_simple/Page/chats.dart';
 import 'package:drawer_simple/Widget/AppDrawer.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +18,12 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("Home"),
       ),
-      body: Center(
-        child: Text("HOME PAGE"),
+      // Handle back 2x click for back app or close app
+      body: DoubleBackToCloseApp(
+        snackBar: SnackBar(
+          content: Text("Tap back again to leave"),
+        ),
+        child: buildCountent(),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -27,6 +32,12 @@ class _HomePageState extends State<HomePage> {
         },
         child: Icon(Icons.chat),
       ),
+    );
+  }
+
+  Widget buildCountent() {
+    return Center(
+      child: Text("HOME PAGE"),
     );
   }
 }
