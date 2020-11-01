@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class AppDrawer extends StatelessWidget {
+class DrawerWidget extends StatelessWidget {
   final int _selectedIndex;
 
-  AppDrawer(this._selectedIndex);
+  DrawerWidget(this._selectedIndex);
 
   void _onMenuTap(BuildContext context, int index) {
     Navigator.pop(context);

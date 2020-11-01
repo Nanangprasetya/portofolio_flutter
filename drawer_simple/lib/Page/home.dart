@@ -1,6 +1,6 @@
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:drawer_simple/Page/chats.dart';
-import 'package:drawer_simple/Widget/AppDrawer.dart';
+import 'package:drawer_simple/Widget/Drawer_Widget.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,7 +14,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: AppDrawer(0),
+      drawer: DrawerWidget(0),
       appBar: AppBar(
         title: Text("Home"),
       ),

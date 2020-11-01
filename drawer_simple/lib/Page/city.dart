@@ -1,4 +1,4 @@
-import 'package:drawer_simple/Widget/AppDrawer.dart';
+import 'package:drawer_simple/Widget/Drawer_Widget.dart';
 import 'package:flutter/material.dart';
 
 class CityPage extends StatefulWidget {
@@ -12,7 +12,7 @@ class _CityPageState extends State<CityPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: AppDrawer(2),
+      drawer: DrawerWidget(2),
       appBar: AppBar(
         title: Text("City"),
       ),

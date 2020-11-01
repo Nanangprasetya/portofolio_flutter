@@ -1,4 +1,4 @@
-import 'package:drawer_simple/Widget/AppDrawer.dart';
+import 'package:drawer_simple/Widget/Drawer_Widget.dart';
 import 'package:flutter/material.dart';
 
 class CountryPage extends StatefulWidget {
@@ -12,7 +12,7 @@ class _CountryPageState extends State<CountryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: AppDrawer(1),
+      drawer: DrawerWidget(1),
       appBar: AppBar(
         title: Text("Country"),
       ),
