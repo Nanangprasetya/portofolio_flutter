@@ -1,32 +1,124 @@
+
+
+![Image](assets/drawer_simple.gif)
+
 # Drawer or Side Bar for Flutter (Android and IOS) ([DEMO](https://github.com/Nanangprasetya/portofolio_flutter.git))
 
 The application drawer can return when it is outside the home page then return to the first page without stopping the application and can handle double back to close the app.
 
 
-![Image](assets/drawer_simple.gif)
-
-
-
-## Getting Started
+## Initialization
 
 For help getting started with Flutter, view our online
 [documentation](https://flutter.io/).
 
-**Step 1:**
 
-Clone or download this repo by using the code below:
+**Widget List**
+
+Use the `selected Index` for the selected Page also to specify the home page. `_onMenuTap ()` is used to call a new page.
+
+```dart
+Widget buildListTile(
+    BuildContext context, {
+    @required int selectedIndex,
+    @required Widget lending,
+    @required String title,
+  }) {
+    return Container(
+      color: _selectedIndex == selectedIndex
+          ? Theme.of(context).primaryColor.withOpacity(0.15)
+          : null,
+      child: ListTile(
+        selected:_selectedIndex == selectedIndex,
+        leading: lending,
+        title: Text(title),
+        onTap: () => _onMenuTap(context, selectedIndex),
+      ),
+    );
+  }
 
 ```
-git clone https://github.com/Nanangprasetya/portofolio_flutter.git
+**OnTab**
+
+Function for processing page displacement.
+
+```dart
+void _onMenuTap(BuildContext context, int index) {
+    Navigator.pop(context);
+    if (index == _selectedIndex) return;
+
+    if (index == 0) {
+      Navigator.pop(context);
+    } else if (index == 1) {
+      if (_selectedIndex == 0) {
+        Navigator.pushNamed(context, '/country');
+      } else {
+        Navigator.pushReplacementNamed(context, '/country');
+      }
+    } else if (index == 2) {
+      if (_selectedIndex == 0) {
+        Navigator.pushNamed(context, '/city');
+      } else {
+        Navigator.pushReplacementNamed(context, '/city');
+      }
+    }
+  }
+
+```
+**Call Drawer Widget**
+
+`DrawerWidget ()` requires the ʻint` parameter to specify the location of this page.
+
+```dart
+return Scaffold(
+      drawer: DrawerWidget(0),
+      appBar: AppBar(
+        title: Text("Home"),
+      ),
+      .......
 ```
 
-**Step 2:**
+**Generate Route**
 
-Go to project root and execute the following command in console to get the required dependencies:
+Using this `onGenerateRoute` helps me in overcoming page errors. This `CustomRouteUtil` is used to make a transition animation when the page changes.
 
+```dart
+onGenerateRoute: (RouteSettings settings) {
+        switch (settings.name) {
+          case '/home':
+            return CustomRouteUtil(
+              builder: (context) => HomePage(),
+            );
+          case '/country':
+            return CustomRouteUtil(
+              builder: (context) => CountryPage(),
+
+            );
+    .......
 ```
-flutter pub get
+
+**CustomRouteUtil**
+
+This function is used to make the page turn annoying, because I use `Navigator.pushReplacementNamed ()` to change the page.
+
+```dart
+import 'package:flutter/material.dart';
+
+class CustomRouteUtil<T> extends MaterialPageRoute<T> {
+  CustomRouteUtil({WidgetBuilder builder, RouteSettings settings})
+      : super(builder: builder, settings: settings);
+
+  @override
+  Widget buildTransitions(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation, Widget child) {
+
+    // Settings.name digunakan jika tidak menginginkan Transition
+    if (settings.name != null)
+    return child;
+    return new FadeTransition(opacity: animation, child: child);
+  }
 ```
+
 
 ## Features :
 
