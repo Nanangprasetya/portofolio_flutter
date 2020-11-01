@@ -1,16 +1,67 @@
-# dark_mode_dynamic
+# Dynamic Theme for Flutter (Android and IOS) ([DEMO](https://github.com/Nanangprasetya/portofolio_flutter.git))
 
-A new Flutter project.
+This application allows to set light or dark themes manually and also allows you to set a theme based on the system.
+
+
+![Image](assets/dynamic_theme.png)
+
+
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+For help getting started with Flutter, view our online
+[documentation](https://flutter.io/).
 
-A few resources to get you started if this is your first Flutter project:
+**Step 1:**
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Clone or download this repo by using the code below:
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```
+git clone https://github.com/Nanangprasetya/portofolio_flutter.git
+```
+
+**Step 2:**
+
+Go to project root and execute the following command in console to get the required dependencies:
+
+```
+flutter pub get
+```
+
+## Features :
+
+* Dynamic Chenge Theme
+* Toggle and PopupMenu for change Theme
+* Color Theme Custom extend from Matrial Design
+* List Item + Selected
+* Text Theme
+* Color ThemeData
+
+### Folder Structure
+Here is the core folder structure which Flutter Project.
+
+```
+lib/
+|- Page/
+    |- home
+    |- city
+    |- dialog
+    |- theme_color_page
+    |- not_found
+|- Util/
+    |- custom_route_util
+    |- theme_util
+|- Widget/
+    |- drawer_widget
+|- main
+```
+
+### Plugins
+
+* [Adaptive Theme](https://pub.dev/packages/adaptive_theme)
+
+### Social Media
+
+* [Telegram Biscuit People](https://t.me/@Biscuit_People)
+* [Instagram Biscuit People](https://www.instagram.com/uiux.biscuit/)
+* [Dribbble Biscuit People](https://dribbble.com/biscuit_uiux)
