@@ -10,8 +10,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  double _value = 0;
   int _valueMenus = 0;
+  double _valueSlider = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,21 +20,50 @@ class _HomePageState extends State<HomePage> {
         title: Text("Home Page"),
         actions: <Widget>[buildPopupMenuButton(context)],
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: <Widget>[
-              buildTextFormField(),
-              buildButton(),
-              buildSlider(context),
-              buildSwitch(context),
-              buildRadioButton(context),
-            ],
-          ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView(
+          children: <Widget>[
+            buildTextFormField(),
+            buildButton(),
+            buildRaisedIcon(),
+            buildFlatButton(),
+            buildMaterialButton(),
+            buildOutlineButton(context),
+            buildSlider(context),
+            Center(child: buildSwitch(context)),
+            buildRadioButton(context),
+            buildCheckbox(context)
+          ],
         ),
       ),
     );
+  }
+
+  Checkbox buildCheckbox(BuildContext context) {
+    return Checkbox(
+        value: !AdaptiveTheme.of(context).isDefault,
+        onChanged: (i) {
+          AdaptiveTheme.of(context).toggleThemeMode();
+        });
+  }
+
+  OutlineButton buildOutlineButton(BuildContext context) {
+    return OutlineButton(
+        child: Text("Outline Button"),
+        highlightedBorderColor: Theme.of(context).highlightColor,
+        onPressed: () {});
+  }
+
+  MaterialButton buildMaterialButton() =>
+      MaterialButton(child: Text("Matrial Button"), onPressed: () {});
+
+  FlatButton buildFlatButton() =>
+      FlatButton(child: Text("Flat Button"), onPressed: () {});
+
+  RaisedButton buildRaisedIcon() {
+    return RaisedButton.icon(
+        onPressed: () {}, icon: Icon(Icons.add), label: Text("Hello"));
   }
 
   ButtonTheme buildButton() {
@@ -43,7 +72,7 @@ class _HomePageState extends State<HomePage> {
       height: 40,
       child: RaisedButton(
           textColor: Theme.of(context).selectedRowColor,
-          child: Text("Button Example"),
+          child: Text("Button Custom"),
           onPressed: () {}),
     );
   }
@@ -114,17 +143,17 @@ class _HomePageState extends State<HomePage> {
 
   Slider buildSlider(BuildContext context) {
     return Slider(
-      min: 0.0,
-      max: 1.0,
-      value: _valueMenus.toDouble(),
+      min: 0,
+      max: 100,
+      value: _valueSlider,
       onChanged: (value) {
         print(value.toString());
         setState(() {
-          _valueMenus = value.toInt();
+          _valueSlider = value;
         });
-        if (value <= 0.5) {
+        if (value <= 50) {
           AdaptiveTheme.of(context).setLight();
-        } else if (value >= 0.5) {
+        } else if (value >= 60) {
           AdaptiveTheme.of(context).setDark();
         }
       },
@@ -147,7 +176,7 @@ class _HomePageState extends State<HomePage> {
         focusedBorder: InputBorder.none,
         border: InputBorder.none,
         filled: true,
-        labelText: "Hello",
+        labelText: "Text Field",
       ),
     );
   }

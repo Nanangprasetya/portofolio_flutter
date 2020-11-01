@@ -12,6 +12,7 @@ class CityPage extends StatefulWidget {
 class _CityPageState extends State<CityPage> {
   int _selectedIndex = 0;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  List<int> _selectedItems = List<int>();
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +46,16 @@ class _CityPageState extends State<CityPage> {
           ],
         ),
         bottomNavigationBar: buildBottomNavigationBar(),
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {},
-          label: Text("FAB 1"),
-          icon: Icon(Icons.add),
-        ),
+        floatingActionButton: buildFloatingActionButton(),
       ),
+    );
+  }
+
+  FloatingActionButton buildFloatingActionButton() {
+    return FloatingActionButton.extended(
+      onPressed: () {},
+      label: Text("FAB 1"),
+      icon: Icon(Icons.add),
     );
   }
 
@@ -78,17 +83,51 @@ class _CityPageState extends State<CityPage> {
       },
     );
   }
-}
 
-Widget buildListData(BuildContext context) {
-  return ListView.builder(
-    itemCount: 100,
-    itemBuilder: (context, index) {
-      return ListTile(
-        leading: CircleAvatar(child: Text(index.toString())),
-        title: Text("Hello ${index.toString()}"),
-        subtitle: Text("Subtitle ${(index % 2).toString()}"),
-      );
-    },
-  );
+  Widget buildListData(BuildContext context) {
+    return ListView.separated(
+      itemCount: 100,
+      itemBuilder: (context, index) {
+        return Container(
+          color: _themeColor(_selectedItems.contains(index)),
+          child: ListTile(
+            leading: CircleAvatar(child: Text(index.toString())),
+            title: Text(
+              "Hello ${index.toString()}",
+            ),
+            subtitle: Text("Subtitle ${(index % 2).toString()}"),
+            onTap: () {
+              if (_selectedItems.contains(index)) {
+                setState(() {
+                  _selectedItems.removeWhere((val) => val == index);
+                });
+              }
+            },
+            onLongPress: () {
+              if (!_selectedItems.contains(index)) {
+                setState(() {
+                  _selectedItems.add(index);
+                });
+              }
+            },
+          ),
+        );
+      },
+      separatorBuilder: (context, index) {
+        return Divider();
+      },
+    );
+  }
+
+  Color _themeColor(bool contains) {
+    if (contains) {
+      if (Theme.of(context).brightness == Brightness.light) {
+        return Theme.of(context).primaryColor.withOpacity(0.15);
+      } else {
+        return Theme.of(context).accentColor.withOpacity(0.15);
+      }
+    } else {
+      return null;
+    }
+  }
 }

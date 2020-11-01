@@ -71,7 +71,10 @@ class _DialogPageState extends State<DialogPage> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         CircularProgressIndicator(),
-                        LinearProgressIndicator()
+                        LinearProgressIndicator(
+                          backgroundColor:
+                              Theme.of(context).accentColor.withOpacity(0.12),
+                        )
                       ],
                     )),
               ),
@@ -107,7 +110,10 @@ class _DialogPageState extends State<DialogPage> {
 
   RaisedButton buildRaisedButton(
       BuildContext context, String text, Function onPress) {
-    return RaisedButton(child: Text(text), onPressed: onPress);
+    return RaisedButton(
+        textColor: Theme.of(context).selectedRowColor,
+        child: Text(text),
+        onPressed: onPress);
   }
 
   Future buildShowDialog(BuildContext context, Widget content) {
@@ -117,12 +123,8 @@ class _DialogPageState extends State<DialogPage> {
         content: content,
         actions: <Widget>[
           FlatButton(
-            textColor: Theme.of(context).disabledColor,
               child: Text("CANCEL"), onPressed: () => Navigator.pop(context)),
-          FlatButton(
-              child: Text("OK"),
-              textColor: Theme.of(context).errorColor,
-              onPressed: () => Navigator.pop(context))
+          FlatButton(child: Text("OK"), onPressed: () => Navigator.pop(context))
         ],
       ),
     );

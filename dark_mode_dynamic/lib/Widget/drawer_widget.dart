@@ -75,7 +75,9 @@ class DrawerWidget extends StatelessWidget {
   }) {
     return Container(
       color: _selectedIndex == selectedIndex
-          ? Theme.of(context).accentColor.withOpacity(0.15)
+          ? Theme.of(context).brightness == Brightness.light
+              ? Theme.of(context).primaryColor.withOpacity(0.15)
+              : Theme.of(context).accentColor.withOpacity(0.15)
           : null,
       child: ListTile(
         selected: _selectedIndex == selectedIndex,
