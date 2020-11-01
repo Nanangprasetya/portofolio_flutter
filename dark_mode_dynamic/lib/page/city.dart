@@ -32,16 +32,16 @@ class _CityPageState extends State<CityPage> {
           ],
           bottom: TabBar(
             tabs: [
-              Tab(icon: Icon(Icons.directions_car)),
-              Tab(icon: Icon(Icons.directions_transit)),
-              Tab(icon: Icon(Icons.directions_bike)),
+              Tab(icon: Icon(Icons.format_list_numbered)),
+              Tab(icon: Icon(Icons.text_format)),
+              Tab(icon: Icon(Icons.not_interested)),
             ],
           ),
         ),
         body: TabBarView(
           children: [
-            buildListData(context),
-            Icon(Icons.directions_transit),
+            buildListTile(context),
+            buildListTypo(context),
             Icon(Icons.directions_bike),
           ],
         ),
@@ -84,7 +84,7 @@ class _CityPageState extends State<CityPage> {
     );
   }
 
-  Widget buildListData(BuildContext context) {
+  Widget buildListTile(BuildContext context) {
     return ListView.separated(
       itemCount: 100,
       itemBuilder: (context, index) {
@@ -114,7 +114,7 @@ class _CityPageState extends State<CityPage> {
         );
       },
       separatorBuilder: (context, index) {
-        return Divider();
+        return Divider(height: 0.0);
       },
     );
   }
@@ -124,10 +124,94 @@ class _CityPageState extends State<CityPage> {
       if (Theme.of(context).brightness == Brightness.light) {
         return Theme.of(context).primaryColor.withOpacity(0.15);
       } else {
-        return Theme.of(context).accentColor.withOpacity(0.15);
+        return Theme.of(context).splashColor;
       }
     } else {
       return null;
     }
   }
+
+  Widget buildListTypo(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    List<ThemeMatrial> listTextStyle = <ThemeMatrial>[
+      ThemeMatrial(
+        "bodyText1",
+        textTheme.bodyText1,
+      ),
+      ThemeMatrial(
+        "bodyText2",
+        textTheme.bodyText2,
+      ),
+      ThemeMatrial(
+        "button",
+        textTheme.button,
+      ),
+      ThemeMatrial(
+        "caption",
+        textTheme.caption,
+      ),
+      ThemeMatrial(
+        "overline",
+        textTheme.overline,
+      ),
+      ThemeMatrial(
+        "subtitle1",
+        textTheme.subtitle1,
+      ),
+      ThemeMatrial(
+        "subtitle2",
+        textTheme.subtitle2,
+      ),
+      ThemeMatrial(
+        "headline6",
+        textTheme.headline6,
+      ),
+      ThemeMatrial(
+        "headline5",
+        textTheme.headline5,
+      ),
+      ThemeMatrial(
+        "headline4",
+        textTheme.headline4,
+      ),
+      ThemeMatrial(
+        "headline3",
+        textTheme.headline3,
+      ),
+      ThemeMatrial(
+        "headline2",
+        textTheme.headline2,
+      ),
+      ThemeMatrial(
+        "headline1",
+        textTheme.headline1,
+      ),
+    ];
+
+    return ListView.builder(
+      itemCount: listTextStyle.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Container(
+            child: Text(
+                listTextStyle[index].name +
+                    " (" +
+                    listTextStyle[index].style.fontSize.toString() +
+                    ", " +
+                    listTextStyle[index].style.fontWeight.toString() +
+                    ")",
+                style: listTextStyle[index].style),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class ThemeMatrial {
+  final String name;
+  final TextStyle style;
+
+  ThemeMatrial(this.name, this.style);
 }

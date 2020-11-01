@@ -24,7 +24,7 @@ class ThemeUtil {
     secondaryHeaderColor: _primery50,
     textSelectionColor: _primery200,
     textSelectionHandleColor: _primery300,
-    indicatorColor: _primary,
+    indicatorColor: _primary, 
     buttonColor: _primary,
     colorScheme: ColorScheme.light(
       primary: _primary,
