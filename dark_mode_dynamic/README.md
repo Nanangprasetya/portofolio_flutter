@@ -1,31 +1,91 @@
+
+![Image](assets/dynamic_theme.png)
+
 # Dynamic Theme for Flutter (Android and IOS) ([DEMO](https://github.com/Nanangprasetya/portofolio_flutter.git))
 
 This application allows to set light or dark themes manually and also allows you to set a theme based on the system.
 
 
-![Image](assets/dynamic_theme.png)
-
-
-
-## Getting Started
+## Initialization
 
 For help getting started with Flutter, view our online
 [documentation](https://flutter.io/).
 
-**Step 1:**
 
-Clone or download this repo by using the code below:
+**Set Theme Data**
 
+Change each theme to my liking.
+
+```dart
+ //Light Theme
+ static ThemeData lightThemeData = ThemeData(
+    brightness: Brightness.light,
+    primaryColor: _primary,
+    accentColor: _secondary,
+    ...
+    ...
+ );
+
+ //Dark Theme
+  static ThemeData darkThemeData = ThemeData(
+    brightness: Brightness.dark,
+    primaryColor: _primeryDark,
+    accentColor: _secondary,
+    ...
+    ...
+  );
 ```
-git clone https://github.com/Nanangprasetya/portofolio_flutter.git
+
+**Get Theme**
+
+Calls `getThemeMode()` to call the current theme.
+
+```dart
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final saveThemeMode = await AdaptiveTheme.getThemeMode();
+  runApp(MyApp(adaptiveTheme: saveThemeMode));
+}
 ```
 
-**Step 2:**
+**Add AdaptiveTheme Widget**
 
-Go to project root and execute the following command in console to get the required dependencies:
+Using this Plugin [Adaptive Theme](https://pub.dev/packages/adaptive_theme) really helped me.
 
+```dart
+class MyApp extends StatelessWidget {
+  final AdaptiveThemeMode adaptiveTheme;
+
+  const MyApp({Key key, this.adaptiveTheme}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return AdaptiveTheme(
+      light: ThemeUtil.lightThemeData,
+      dark: ThemeUtil.darkThemeData,
+      initial: adaptiveTheme ?? AdaptiveThemeMode.light,
+      builder: (theme, darktheme) {
+        return MaterialApp(
+          title: 'Flutter Demo',
+          debugShowCheckedModeBanner: false,
+          theme: theme,
+          darkTheme: darktheme,
+          home: HomePage(),
+          onGenerateRoute: (RouteSettings settings) {
+            ....
+            ....
 ```
-flutter pub get
+
+**Change Theme**
+
+Changing the theme by calling the `toggleThemeMode()`, is very easy, right?
+
+```dart
+Switch(
+  value: !AdaptiveTheme.of(context).isDefault,
+  onChanged: (i) {
+    AdaptiveTheme.of(context).toggleThemeMode();
+  },
+),
 ```
 
 ## Features :
@@ -37,7 +97,7 @@ flutter pub get
 * Text Theme
 * Color ThemeData
 
-### Folder Structure
+### Folder **Structure**
 Here is the core folder structure which Flutter Project.
 
 ```
