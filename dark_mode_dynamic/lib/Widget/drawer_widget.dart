@@ -93,9 +93,7 @@ class DrawerWidget extends StatelessWidget {
       accountName: Text("UIUX.Biscuit"),
       accountEmail: Text("biscuit.uiux@gmail.com"),
       currentAccountPicture: CircleAvatar(
-        backgroundColor: Theme.of(context).platform == TargetPlatform.iOS
-            ? Theme.of(context).primaryColor
-            : Colors.white,
+        backgroundColor: Colors.white,
         child: Text("M", style: TextStyle(fontSize: 40.0)),
       ),
     );

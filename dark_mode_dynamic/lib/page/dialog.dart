@@ -1,5 +1,6 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:dark_mode_dynamic/Widget/drawer_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DialogPage extends StatefulWidget {
@@ -119,7 +120,7 @@ class _DialogPageState extends State<DialogPage> {
   Future buildShowDialog(BuildContext context, Widget content) {
     return showDialog(
       context: context,
-      child: AlertDialog(
+      child: CupertinoAlertDialog(
         content: content,
         actions: <Widget>[
           FlatButton(

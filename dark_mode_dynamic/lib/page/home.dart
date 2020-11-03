@@ -77,39 +77,33 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Row buildRadioButton(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
+  Widget buildRadioButton(BuildContext context) {
+    return Wrap(
+      direction: Axis.horizontal,
       children: <Widget>[
-        Container(
-          width: 200,
-          child: ListTile(
-            leading: Radio(
-                value: 0,
-                groupValue: _valueMenus,
-                onChanged: (i) {
-                  AdaptiveTheme.of(context).setLight();
-                  setState(() {
-                    _valueMenus = i;
-                  });
-                }),
-            title: Text("Light Mode"),
-          ),
+        ListTile(
+          leading: Radio(
+              value: 0,
+              groupValue: _valueMenus,
+              onChanged: (i) {
+                AdaptiveTheme.of(context).setLight();
+                setState(() {
+                  _valueMenus = i;
+                });
+              }),
+          title: Text("Light Mode"),
         ),
-        Container(
-          width: 200,
-          child: ListTile(
-            leading: Radio(
-                value: 1,
-                groupValue: _valueMenus,
-                onChanged: (i) {
-                  AdaptiveTheme.of(context).setDark();
-                  setState(() {
-                    _valueMenus = i;
-                  });
-                }),
-            title: Text("Dark Mode"),
-          ),
+        ListTile(
+          leading: Radio(
+              value: 1,
+              groupValue: _valueMenus,
+              onChanged: (i) {
+                AdaptiveTheme.of(context).setDark();
+                setState(() {
+                  _valueMenus = i;
+                });
+              }),
+          title: Text("Dark Mode"),
         ),
       ],
     );
