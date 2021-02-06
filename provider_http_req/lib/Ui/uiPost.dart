@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_http_req/Api/apiPost.dart';
+import 'package:provider_http_req/Ui/uiPostDtl.dart';
 import 'package:provider_http_req/Util/statusReq.dart';
 import 'package:provider_http_req/Widget/alertDialog.dart';
 import 'package:provider_http_req/Widget/bottomLoading.dart';
 
-class UiProvider extends StatefulWidget {
+class UiPost extends StatefulWidget {
   @override
-  _UiProviderState createState() => _UiProviderState();
+  _UiPostState createState() => _UiPostState();
 }
 
-class _UiProviderState extends State<UiProvider> {
+class _UiPostState extends State<UiPost> {
   ScrollController _controller = ScrollController();
   double _scrollThreshold = 200.0;
 
@@ -19,7 +20,7 @@ class _UiProviderState extends State<UiProvider> {
   void initState() {
     super.initState();
     _pageScroll();
-    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Provider.of<PostApi>(context, listen: false).firstPage();
     });
   }
@@ -96,7 +97,7 @@ class _UiProviderState extends State<UiProvider> {
               } else {
                 if (state.statusReq == StatusReq.error) {
                   SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-                    DialogUtil.showErrorDialog(context, state.errorReq);
+                   return DialogUtil.showErrorDialog(context, state.errorReq);
                   });
                 }
                 return ListView.builder(
@@ -115,6 +116,14 @@ class _UiProviderState extends State<UiProvider> {
                         leading: Text(state.listPost[index].id.toString()),
                         title: Text(state.listPost[index].title),
                         subtitle: Text(state.listPost[index].body),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    UiPostDetail(id: state.listPost[index].id),
+                              ));
+                        },
                       ),
                     );
                   },

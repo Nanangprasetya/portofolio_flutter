@@ -24,12 +24,9 @@ abstract class ProviderPost<T> extends ChangeNotifier {
 
   ErrorData get errorReq => _errorReq;
 
-  Future<void> refresPage() {
-    print("Refres");
-    _page = 0;
-    _lstPost.clear();
-   return _loadData();
-  } 
+  Future<void> refresPage() {   
+    return _loadData();
+  }
 
   void firstPage() {
     _page = 0;
@@ -50,7 +47,7 @@ abstract class ProviderPost<T> extends ChangeNotifier {
 
   Future<void> getPostById(int id) => _getDataById(id);
 
-  Future<void> _loadData({bool load = false, bool refresh  = false}) async {
+  Future<void> _loadData({bool load = false}) async {
     int _limit = 10;
 
     if (load) {
@@ -67,10 +64,10 @@ abstract class ProviderPost<T> extends ChangeNotifier {
 
       if (_lstPost.isEmpty) {
         _statusReq = StatusReq.emptyData;
+      } else {
+        _statusReq = StatusReq.hasData;
+        _page += _limit;
       }
-
-      _statusReq = StatusReq.hasData;
-      _page += _limit;
     } catch (e, s) {
       _statusReq = StatusReq.error;
       _errorReq = ErrorData(e, s);
@@ -78,7 +75,20 @@ abstract class ProviderPost<T> extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> _getDataById(int id)  async{
-    
+  Future<void> _getDataById(int id) async {
+    _statusReq = StatusReq.loading;
+    try {
+      DtoPost response = await getPostbyId(id);
+      if (response == null) {
+        _statusReq = StatusReq.emptyData;
+      } else {
+        _statusReq = StatusReq.hasData;
+        _postById = response;
+      }
+    } catch (e, s) {
+      _statusReq = StatusReq.error;
+      _errorReq = ErrorData(e, s);
+    }
+    notifyListeners();
   }
 }

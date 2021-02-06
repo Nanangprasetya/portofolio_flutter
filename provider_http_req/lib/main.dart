@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_http_req/Api/apiPost.dart';
-import 'package:provider_http_req/Ui/uiProvider.dart';
+import 'package:provider_http_req/Ui/uiPost.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue,
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
-          home: UiProvider(),
+          home: UiPost(),
         ));
   }
 }
