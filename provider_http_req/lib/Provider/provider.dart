@@ -25,6 +25,8 @@ abstract class ProviderPost<T> extends ChangeNotifier {
   ErrorData get errorReq => _errorReq;
 
   Future<void> refresPage() {   
+    _page = 0;
+    listPost.clear();
     return _loadData();
   }
 
