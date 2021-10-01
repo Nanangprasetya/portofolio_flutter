@@ -1,6 +1,18 @@
-# rive_animation
+# Rive Animation for Flutter
+****
 
-A new Flutter project.
+## Result
+
+![Alt Text](/record_result.gif)
+
+## Documentation
+
+
+* [Documentation](https://help.rive.app/runtimes/quick-start)
+
+### Plugins
+
+* [Rive](https://pub.dev/packages/rive)
 
 ## Getting Started
 
