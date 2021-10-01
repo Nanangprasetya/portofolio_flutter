@@ -3,7 +3,7 @@
 
 ## Result
 
-![Alt Text](/record_result.gif)
+![Alt Text](record_result.gif)
 
 ## Documentation
 
