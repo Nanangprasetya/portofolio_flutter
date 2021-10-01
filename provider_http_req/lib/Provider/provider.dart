@@ -6,7 +6,7 @@ import 'package:provider_http_req/Util/statusReq.dart';
 abstract class ProviderPost<T> extends ChangeNotifier {
   List<DtoPost> _lstPost = [];
   DtoPost _postById;
-  StatusReq _statusReq = StatusReq.loading;
+  StatusReq _statusReq = StatusReq.hasData;
   ErrorData _errorReq;
   int _page = 0;
 
@@ -31,9 +31,7 @@ abstract class ProviderPost<T> extends ChangeNotifier {
   }
 
   void firstPage() {
-    _page = 0;
     _loadData(load: true);
-    notifyListeners();
   }
 
   void nextPage() {

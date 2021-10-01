@@ -19,10 +19,10 @@ class _UiPostState extends State<UiPost> {
   @override
   void initState() {
     super.initState();
-    _pageScroll();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Provider.of<PostApi>(context, listen: false).firstPage();
     });
+    _pageScroll();
   }
 
   void error(BuildContext context, String e) async {
@@ -89,12 +89,7 @@ class _UiPostState extends State<UiPost> {
             builder: (context, state, child) {
               print("Status Req => " + state.statusReq.toString());
 
-              if (state.statusReq == StatusReq.loading) {
-                return CircularProgressIndicator();
-              }
-              if (state.statusReq == StatusReq.emptyData) {
-                return Text("Data is Empty");
-              } else {
+              if (state.statusReq == StatusReq.hasData) {
                 if (state.statusReq == StatusReq.error) {
                   SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
                    return DialogUtil.showErrorDialog(context, state.errorReq);
@@ -128,6 +123,11 @@ class _UiPostState extends State<UiPost> {
                     );
                   },
                 );
+              }
+              else if (state.statusReq == StatusReq.emptyData) {
+                return Text("Data is Empty");
+              } else {
+                return CircularProgressIndicator();
               }
             },
           ),
