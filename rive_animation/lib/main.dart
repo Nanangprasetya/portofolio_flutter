@@ -67,7 +67,6 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text("Rive Animation | v6.3"),
         actions: [
-          IconButton(icon: Icon(Icons.info_outline), onPressed: null)
         ],
       ),
       body: Center(
