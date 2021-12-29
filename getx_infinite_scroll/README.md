@@ -2,15 +2,17 @@
 
 Get All User            |  Detail User
 :-------------------------:|:-------------------------:
-![Get ALl Data](/assets/get_all.png)  |  ![](/assets/detail.png)
+![Get All User](/get_all.png)  |  ![Detail User](/detail.png)
 
 Create User            |  Edit User
 :-------------------------:|:-------------------------:
-![Get ALl Data](/assets/create.png)  |  ![](/assets/edit.png)
+![Create User](/create.png)  |  ![Edit User](/edit.png)
 
 This is an example implementation useing the plugin Getx.
 
 GetX is a micro-framework that aims to provide top notch development experience by minimizing the boiler plate combined with neat syntax and simple approach. When developing with GetX, everything feels self evident and practical. It’s a solid blend of simplicity and power. It’s one of those rare packages that try to do everything and actually do it.
+
+GetX allows the total decoupling of the (MVC) View, presentation logic, business logic, dependency injection, and navigation. You do not need context to navigate between routes, so you are not dependent on the widget tree (visualization) for this.
 
 GetX provides a combination of State Management, Dependency Injection and Route Management solutions that work great together. But things don’t end here, it provides a ton of utilities that make it easy to implement internationalization, theming, validation, etc.
 
