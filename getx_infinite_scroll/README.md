@@ -2,11 +2,11 @@
 
 Get All User            |  Detail User
 :-------------------------:|:-------------------------:
-![Get All User](/get_all.png)  |  ![Detail User](/detail.png)
+![Get All User](https://biscuit.my.id/wp-content/uploads/2022/01/get_all.png)  |  ![Detail User](https://biscuit.my.id/wp-content/uploads/2022/01/detail.png)
 
 Create User            |  Edit User
 :-------------------------:|:-------------------------:
-![Create User](/create.png)  |  ![Edit User](/edit.png)
+![Create User](https://biscuit.my.id/wp-content/uploads/2022/01/create.png)  |  ![Edit User](https://biscuit.my.id/wp-content/uploads/2022/01/edit.png)
 
 This is an example implementation useing the plugin Getx.
 
