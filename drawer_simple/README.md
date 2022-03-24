@@ -151,6 +151,6 @@ lib/
 
 ### Social Media
 
-* [Telegram Biscuit People](https://t.me/@Biscuit_People)
-* [Instagram Biscuit People](https://www.instagram.com/uiux.biscuit/)
+* [Telegram Biscuit People](https://t.me/@biscuit_uiux)
+* [Instagram Biscuit People](https://www.instagram.com/biscuit_uiux/)
 * [Dribbble Biscuit People](https://dribbble.com/biscuit_uiux)
